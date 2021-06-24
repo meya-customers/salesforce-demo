@@ -2,9 +2,14 @@
 #   flow.product_responses: Product-specific info an agent needs to provide a quote.
 #
 steps:
-  - ask_form: What year is the vehicle?
-    placeholder: '2017'
-  - flow_set: vehicle_year
+  - (start)
+  - ask_form: What is the vehicle's VIN?
+    placeholder: ABC123
+    quick_replies:
+      - text: How do I find my VIN?
+        action:
+          jump: help_vin
+  - flow_set: vehicle_vin
 
   - say: What type of vehicle is it?
     quick_replies:
@@ -15,8 +20,15 @@ steps:
       - text: Truck
   - flow_set: vehicle_type
 
-  - flow: flow.twilio.flex.pre_chat
+  - flow: flow.salesforce.live_agent.request_agent
     data:
       product_responses: |-
-        Vehicle year: (@ flow.vehicle_year )
+        Vehicle VIN: (@ flow.vehicle_vin )
         Vehicle type: (@ flow.vehicle_type )
+
+  - (help_vin)
+  - flow: flow.salesforce.knowledge.search
+    jump: search
+    data:
+      search_query: vin
+  - jump: start

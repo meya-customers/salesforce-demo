@@ -15,7 +15,7 @@ steps:
       placeholder: Describe the items
   - flow_set: valuable_items
 
-  - flow: flow.twilio.flex.pre_chat
+  - flow: flow.salesforce.live_agent.request_agent
     data:
       product_responses: |-
         Has fire alarm? (@ flow.has_fire_alarm )
