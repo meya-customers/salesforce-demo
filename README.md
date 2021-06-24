@@ -1,4 +1,5 @@
-![Meya build](https://github.com/meya-customers/twilio-flex-demo/workflows/Meya%20build/badge.svg)
+![Meya build](https://github.com/meya-customers/salesforce-demo/workflows/Meya%20build/badge.svg)
+
 
 # twilio-flex-demo
 
