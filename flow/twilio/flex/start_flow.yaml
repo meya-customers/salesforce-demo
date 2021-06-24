@@ -1,0 +1,16 @@
+triggers:
+  - keyword: start_flex_flow
+
+steps:
+  - type: meya.flow.component.case
+    value: (@ user.language )
+    case:
+      pt:
+        flow: flow.twilio.flex.portuguese
+        transfer: true
+      pt-BR:
+        flow: flow.twilio.flex.portuguese
+        transfer: true
+    default:
+      flow: flow.twilio.flex.english
+      transfer: true
