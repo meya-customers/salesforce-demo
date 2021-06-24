@@ -1,6 +1,11 @@
-twilio.account_sid: xxx
-twilio.api_key_secret: xxx
-twilio.api_key_sid: xxx
-twilio.phone_number: '+18005551234'
-twilio_flex.flex_flow_sid: xxx
-twilio_flex.flex_chat_service_sid: xxx
+live_agent.api_endpoint: https://d.la2-c1-iad.salesforceliveagent.com/chat/rest/
+live_agent.organization_id: xxx
+live_agent.deployment_id: xxx
+live_agent.button_id: xxx
+salesforce.instance_base_url: https://your_salesforce_instance.salesforce.com
+salesforce.client_id: xxx
+salesforce.client_secret: xxx
+salesforce.username: xxx
+salesforce.password: xxx
+salesforce.knowledge_base_url: xxx
+orb.identity_verification: true

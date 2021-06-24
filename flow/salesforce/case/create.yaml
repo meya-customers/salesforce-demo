@@ -1,0 +1,76 @@
+triggers:
+  - keyword: salesforce_case_create
+  - keyword: salesforce_case_create_shortcut
+    action:
+      jump: create_shortcut
+      data:
+        reason: Sale
+        subject: Create case test
+        comment: test comment
+        contact_first_name: John
+        contact_last_name: Doe
+        contact_email:
+        send_transcript: true
+
+steps:
+  - if: (@ user.salesforce_contact_id )
+    then: next
+    else:
+      flow: flow.salesforce.contact.create_or_update
+
+  - say: Hi (@ user.first_name )
+
+  - ask: Subject?
+  - flow_set: subject
+
+  - ask: Comment?
+  - flow_set: comment
+
+  - ask: Reason?
+    buttons:
+      - text: Sales
+        result: Sale
+      - text: Engineering
+        result: Engineering
+  - flow_set: reason
+
+  - ask: Send transcript?
+    buttons:
+      - text: Yes
+        result: true
+      - text: No
+        result: false
+  - flow_set: send_transcript
+
+  - type: meya.salesforce.cases.component.create
+    status: New
+    contact_id: (@ user.salesforce_contact_id )
+    origin: Meya
+    reason: (@ flow.reason )
+    subject: (@ flow.subject )
+    priority: P3- Medium
+    comments: (@ flow.comment )
+    send_transcript: (@ flow.send_transcript )
+    custom_fields:
+      ThreadId__c: (@ thread.id )
+    integration: integration.salesforce.cases
+  - jump: render
+
+  - (create_shortcut)
+  - type: meya.salesforce.cases.component.create
+    status: New
+    custom_fields:
+      ThreadId__c: (@ thread.id )
+    contact_first_name: (@ flow.contact_first_name )
+    contact_last_name: (@ flow.contact_last_name )
+    contact_email: (@ flow.contact_email )
+    origin: Meya
+    reason: (@ flow.reason )
+    subject: (@ flow.subject )
+    priority: P3- Medium
+    comments: (@ flow.comment )
+    send_transcript: (@ flow.send_transcript )
+    integration: integration.salesforce.cases
+
+  - (render)
+  - say: Case (@ flow.result.id ) created
