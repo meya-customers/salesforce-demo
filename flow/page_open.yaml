@@ -4,26 +4,17 @@ triggers:
   - keyword: start
 
 steps:
-  - say: Hi! I'm the Acme insurance assistant.
-
-  - say: Do you already have an Acme account?
-    quick_replies:
-      - text: Yes
-        result: existing
-      - text: No
-        result: new
-  - user_set: customer_type
-
-  - say: Got it. What are you looking for today?
+  - say: Hi! I'm the Acme Insurance assistant. I can help you get an insurance quote
+      in just a few clicks!
+  - ask: What kind of insurance are you interested in?
     quick_replies:
       - text: Auto insurance
         result: auto
-      - text: Homeowners insurance
-        result: home
-  - user_set: product
+      - text: Commercial insurance
+        result: commercial
 
-  - if: (@ user.product == "home" )
-    then:
-      flow: flow.insurance.homeowner
-    else:
-      flow: flow.insurance.auto
+  - say: No problem.
+  - delay: 1
+  - say: I'll just need to get some info from you first.
+  - delay: 2
+  - flow: flow.insurance.(@ flow.result )

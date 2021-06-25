@@ -1,7 +1,12 @@
 # Outputs:
 #   flow.product_responses: Product-specific info an agent needs to provide a quote.
 #
+triggers:
+  - button_id: auto
+
 steps:
+  - open_chat
+
   - (start)
   - ask_form: What is the vehicle's VIN?
     placeholder: ABC123
@@ -11,20 +16,11 @@ steps:
           jump: help_vin
   - flow_set: vehicle_vin
 
-  - say: What type of vehicle is it?
-    quick_replies:
-      - text: Compact
-      - text: SUV
-      - text: Van
-      - text: Sedan
-      - text: Truck
-  - flow_set: vehicle_type
-
-  - flow: flow.salesforce.live_agent.request_agent
+  - flow: flow.salesforce.case.create
+    transfer: true
     data:
       product_responses: |-
         Vehicle VIN: (@ flow.vehicle_vin )
-        Vehicle type: (@ flow.vehicle_type )
 
   - (help_vin)
   - flow: flow.salesforce.knowledge.search

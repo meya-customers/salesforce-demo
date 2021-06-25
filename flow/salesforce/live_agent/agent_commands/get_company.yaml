@@ -1,0 +1,6 @@
+triggers:
+  - agent_command: get_company
+
+steps:
+  - ask_form: What company do you work for?
+  - say: Thanks!

@@ -1,4 +1,4 @@
-live_agent.api_endpoint: https://d.la2-c1-iad.salesforceliveagent.com/chat/rest/
+live_agent.api_endpoint: https://d.la2-c1-ord.salesforceliveagent.com/chat/rest/
 live_agent.organization_id: xxx
 live_agent.deployment_id: xxx
 live_agent.button_id: xxx

@@ -1,8 +1,13 @@
+triggers:
+  - keyword: live agent
+
 steps:
   - open_chat
+  - type: meya.orb.component.session.create
+    integration: integration.orb
   - type: meya.csp.component.session.agent.request
     say: Transferring you to the next available agent.
     integration: integration.salesforce.live_agent
     note: Here is a note for the agent.
     data:
-      Name__c: Frank
+      Name__c: (@ user.name )

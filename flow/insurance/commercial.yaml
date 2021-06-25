@@ -1,0 +1,22 @@
+triggers:
+  - button_id: commercial
+
+steps:
+  - open_chat
+
+  - ask: What kind of commercial insurance are you looking for?
+    quick_replies:
+      - Property
+      - Liability
+      - Commercial vehicle
+  - flow_set: commercial_type
+
+  - ask_form: What is your work email address?
+    expect: email_address
+  - user_set: email
+
+  - flow: flow.salesforce.live_agent.request_agent
+    transfer: true
+    data:
+      product_responses: |-
+        Type of insurance: (@ flow.commercial_type )

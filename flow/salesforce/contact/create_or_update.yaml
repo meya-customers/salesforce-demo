@@ -1,6 +1,3 @@
-triggers:
-  - keyword: salesforce_contact_create_or_update
-
 steps:
   - ask: First name?
   - user_set: first_name
@@ -31,8 +28,6 @@ steps:
     integration: integration.salesforce.salesforce
   - user_set:
       salesforce_contact_id: (@ flow.result.id )
-
-  - say: Contact (@ user.salesforce_contact_id ) created
   - end
 
   - (contact_found)
