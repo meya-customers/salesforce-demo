@@ -10,10 +10,10 @@ In this demo, you'll learn how to:
 * build an insurance lead generation app using Salesforce and the Orb,
 * triage users based on their attributes, like customer status, or the product they're interested in,
 * run flows using agent commands,
-* automatically request a CSAT rating when the chat ends.
 
 Video walkthrough:
-* Coming soon!
+* [Demo](https://www.loom.com/share/782fbd9d1ce24e748eb284652ac9c675)
+* [Code walkthrough](https://www.loom.com/share/6a7c2e7baa9a4567b0c3522343c9f699)
 
 ## Setup
 
